@@ -1,0 +1,27 @@
+[
+ {
+  "id": "grit",
+  "label": "I need grit",
+  "blurb": "Rough week. Show me people who kept going."
+ },
+ {
+  "id": "start",
+  "label": "Scared to start",
+  "blurb": "I have an idea and I’m stalling."
+ },
+ {
+  "id": "focus",
+  "label": "Need focus",
+  "blurb": "Cut the noise, do the one thing."
+ },
+ {
+  "id": "lead",
+  "label": "Leading a team",
+  "blurb": "Decisions, people, running something big."
+ },
+ {
+  "id": "big",
+  "label": "Think bigger",
+  "blurb": "Long-term bets and where this is all heading."
+ }
+]

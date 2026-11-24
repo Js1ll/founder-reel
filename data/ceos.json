@@ -1,0 +1,167 @@
+[
+ {
+  "id": "jensen",
+  "name": "Jensen Huang",
+  "company": "NVIDIA",
+  "start": "Born in Taiwan, raised partly in Kentucky. Washed dishes at Denny’s as a teen, then co-founded NVIDIA in 1993 with Chris Malachowsky and Curtis Priem after planning it in a Denny’s booth.",
+  "low": "Around 1996 the company was close to running out of money after its first chip failed to find a market. A bet on a new design kept it alive.",
+  "photo": "photos/p-jensen.jpg",
+  "photoCredit": "Anders Eidesvik",
+  "photoLicense": "CC BY-SA 4.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Jensen_Huang_Stanford_2026-04-30_010_(cropped).jpg"
+ },
+ {
+  "id": "elon",
+  "name": "Elon Musk",
+  "company": "Tesla, SpaceX, X",
+  "start": "Left South Africa as a teenager, sold Zip2 and co-founded PayPal, then put most of his money into SpaceX and Tesla.",
+  "low": "In 2008 SpaceX had failed three Falcon 1 launches and Tesla was short on cash. The fourth launch worked and a NASA contract followed.",
+  "photo": "photos/p-elon.jpg",
+  "photoCredit": "Gage Skidmore",
+  "photoLicense": "CC BY-SA 4.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Elon_Musk_-_54820081119_(3x4_cropped%2C_Rule_of_thirds).jpg"
+ },
+ {
+  "id": "sam",
+  "name": "Sam Altman",
+  "company": "OpenAI",
+  "start": "Dropped out of Stanford to build the location app Loopt at 19, later ran Y Combinator, and co-founded OpenAI in 2015.",
+  "low": "In November 2023 the OpenAI board removed him as CEO. Employees and investors pushed back and he was reinstated within days.",
+  "photo": "photos/p-sam.jpg",
+  "photoCredit": "Prime Minister’s Office of Japan",
+  "photoLicense": "CC BY 4.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Meeting_with_Masayoshi_Son_and_Sam_Altman_(February_3%2C_2025)_(3x4_cropped_on_Altman).jpg"
+ },
+ {
+  "id": "karp",
+  "name": "Alex Karp",
+  "company": "Palantir",
+  "start": "Studied philosophy and earned a doctorate in Germany, then co-founded Palantir in 2003 to build data software for governments.",
+  "low": "Palantir spent years struggling to raise money and win customers, with many investors turning it down before it grew.",
+  "photo": "photos/p-karp.jpg",
+  "photoCredit": "UK Government",
+  "photoLicense": "CC BY 2.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Alex_Karp_attends_AI_Summit_(53302457013)_4-5_ratio.jpg"
+ },
+ {
+  "id": "jobs",
+  "name": "Steve Jobs",
+  "company": "Apple, NeXT, Pixar",
+  "start": "Adopted, a college dropout who audited a calligraphy class. Started Apple in his family’s garage with Steve Wozniak in 1976.",
+  "low": "In 1985 he was pushed out of the company he started. He built NeXT and Pixar, and Apple bought NeXT in 1997.",
+  "photo": "photos/p-jobs.jpg",
+  "photoCredit": "Matt Yohe",
+  "photoLicense": "CC BY-SA 3.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Steve_Jobs_Headshot_2010_(cropped_6).jpg"
+ },
+ {
+  "id": "mark",
+  "name": "Mark Zuckerberg",
+  "company": "Meta",
+  "start": "Launched Facebook from a Harvard dorm room in 2004, left school, and moved the company to Palo Alto.",
+  "low": "Facebook went through repeated privacy backlashes. The 2018 data-privacy scandal led to hearings, fines and a long reset of trust.",
+  "photo": "photos/p-mark.jpg",
+  "photoCredit": "Public domain",
+  "photoLicense": "Public domain",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:P20260929DT-1655_(55561811540)_(cropped_2).jpg"
+ },
+ {
+  "id": "dario",
+  "name": "Dario Amodei",
+  "company": "Anthropic",
+  "start": "Trained as a physicist, worked on AI at Baidu, Google Brain and OpenAI, and left in 2021 to co-found Anthropic with his sister Daniela and others.",
+  "low": "He started a new lab from scratch against far larger rivals, with safety research as the stated reason for building it.",
+  "photo": "photos/p-dario.jpg",
+  "photoCredit": "TechCrunch",
+  "photoLicense": "CC BY 2.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg"
+ },
+ {
+  "id": "jeff",
+  "name": "Jeff Bezos",
+  "company": "Amazon, Blue Origin",
+  "start": "Left a senior job at a Wall Street firm in 1994, drove west, and started Amazon from a garage in Bellevue, Washington.",
+  "low": "After the dot-com crash around 2000 Amazon’s stock fell by more than 90 percent and many predicted the company would fail.",
+  "photo": "photos/p-jeff.jpg",
+  "photoCredit": "U.S. Department of War",
+  "photoLicense": "Public domain",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:260202-D-PM193-2205_SECWAR_Arsenal_of_Freedom_Tour_-_Florida_(3x4_cropped_on_Bezos_and_rotated).jpg"
+ },
+ {
+  "id": "zhang",
+  "name": "Zhang Yiming",
+  "company": "ByteDance",
+  "start": "Studied software engineering at Nankai University, worked at a travel startup, co-founded a property search site, then started ByteDance in 2012.",
+  "low": "In 2018 Chinese regulators shut down one of ByteDance’s apps. He published a public apology. He rarely gives interviews, so most video about him is third-party.",
+  "photo": "photos/p-zhang.jpg",
+  "photoCredit": "CEO Magazine",
+  "photoLicense": "CC BY-SA 4.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:The_CEO_Magazine_Cover.jpg"
+ },
+ {
+  "id": "buffett",
+  "name": "Warren Buffett",
+  "company": "Berkshire Hathaway",
+  "start": "Bought his first stock at 11 and filed his first tax return at 13. After studying under Benjamin Graham he started an investment partnership in 1956, then took control of the textile company Berkshire Hathaway.",
+  "low": "He has called buying Berkshire Hathaway’s struggling textile business one of his worst investments. The mills closed years later.",
+  "photo": "photos/p-buffett.jpg",
+  "photoCredit": "USA International Trade Administration",
+  "photoLicense": "Public domain",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Warren_Buffett_at_the_2015_SelectUSA_Investment_Summit_%28cropped%29.jpg"
+ },
+ {
+  "id": "cuban",
+  "name": "Mark Cuban",
+  "company": "Dallas Mavericks, Shark Tank",
+  "start": "Sold garbage bags door to door as a kid, started the software reseller MicroSolutions in the 1980s, and sold Broadcast.com to Yahoo in 1999.",
+  "low": "Early in his career he lost a sales job in Dallas after a dispute with his boss, which pushed him to start his own company.",
+  "photo": "photos/p-cuban.jpg",
+  "photoCredit": "The White House",
+  "photoLicense": "Public domain",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:P20260518JB-0644_%283x4_cropped_on_Cuban%29.jpg"
+ },
+ {
+  "id": "chesky",
+  "name": "Brian Chesky",
+  "company": "Airbnb",
+  "start": "A designer who rented out air mattresses in his San Francisco apartment in 2007 to cover rent, then co-founded Airbnb in 2008 with Joe Gebbia and Nathan Blecharczyk.",
+  "low": "Investors were skeptical of the idea early on. The founders helped pay the bills by selling novelty cereal boxes during the 2008 election.",
+  "photo": "photos/p-chesky.jpg",
+  "photoCredit": "Celeste Sloman",
+  "photoLicense": "CC BY-SA 4.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Brian_Chesky_2025.jpg"
+ },
+ {
+  "id": "collison",
+  "name": "Patrick Collison",
+  "company": "Stripe",
+  "start": "Grew up in Ireland, built and sold a startup with his brother John as a teenager, then co-founded Stripe in 2010.",
+  "low": "In its early days Stripe had to win over banks and card networks that were slow to work with a tiny startup.",
+  "photo": "photos/p-collison.jpg",
+  "photoCredit": "JD Lasica",
+  "photoLicense": "CC BY 2.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Patrick_Collison_%28cropped%29.jpg"
+ },
+ {
+  "id": "ellison",
+  "name": "Larry Ellison",
+  "company": "Oracle",
+  "start": "Dropped out of college twice and worked as a programmer. Co-founded the company that became Oracle in 1977, after reading a paper on relational databases.",
+  "low": "In 1990 Oracle ran into serious trouble after revenue problems and had to restructure to survive.",
+  "photo": "photos/p-ellison.jpg",
+  "photoCredit": "Oracle PR Hartmann Studios",
+  "photoLicense": "CC BY 2.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Larry_Ellison_2016.png"
+ },
+ {
+  "id": "hassabis",
+  "name": "Demis Hassabis",
+  "company": "Google DeepMind",
+  "start": "A chess prodigy and game designer who studied computer science at Cambridge, earned a PhD in neuroscience, and co-founded DeepMind in 2010.",
+  "low": "His game studio Elixir Studios closed in 2005, after which he turned to neuroscience research.",
+  "photo": "photos/p-hassabis.jpg",
+  "photoCredit": "John Sears",
+  "photoLicense": "CC BY-SA 4.0",
+  "photoSource": "https://commons.wikimedia.org/wiki/File:Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg"
+ }
+]

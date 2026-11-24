@@ -1,0 +1,15 @@
+{
+  "_help": "Fill these in when you are ready. Anything left empty stays hidden on the site.",
+  "newsletter": {
+    "action": "",
+    "emailField": "email",
+    "title": "One clip a week",
+    "blurb": "A short clip and one takeaway, in your inbox. No spam."
+  },
+  "sponsor": {
+    "text": "",
+    "url": ""
+  },
+  "affiliates": [],
+  "goatcounter": ""
+}

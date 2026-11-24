@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Founder Reel</title>
+<meta name="description" content="Short clips from tech CEOs, by person or mood. Independent fan site.">
+<meta name="theme-color" content="#080b09">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: sticky top bar, one view at a time (Today / People / Moods / Saved), film-frame clip cards that link out to short clips on X.
+   Direction: dark cinematic, near-black with green tint, mint signal accent used for actions and tags only. */
+:root{
+  --bg:#080b09;
+  --surface:#0f1411;
+  --surface-2:#161d19;
+  --line:#22302a;
+  --fg:#e8efeb;
+  --muted:#8c9a93;
+  --signal:#3dffa2;
+  --signal-ink:#04140c;
+  --teal:#17c9b0;
+  --warn:#ffb86b;
+  --f-display:"Space Grotesk",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 64px;
+  background-image:radial-gradient(900px 420px at 80% -80px,rgba(61,255,162,.10),transparent 70%),radial-gradient(600px 300px at 0% 0,rgba(23,201,176,.07),transparent 70%);
+  background-repeat:no-repeat;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(8,11,9,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.bar{display:flex;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+.brand{font:700 1.15rem var(--f-display);letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:9px;margin-right:auto}
+.brand i{width:20px;height:14px;border:2px solid var(--signal);border-radius:2px;position:relative;display:inline-block}
+.brand i::after{content:"";position:absolute;left:5px;top:2px;border-left:6px solid var(--signal);border-block:3px solid transparent}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav a{font:500 .8rem var(--f-mono);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:6px;white-space:nowrap}
+nav a:hover{color:var(--fg)}
+nav a[aria-current="page"]{color:var(--signal-ink);background:var(--signal)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface-2);padding:9px 14px;border-radius:6px;font-weight:600;font-size:.88rem;text-decoration:none;line-height:1.2}
+.btn:hover{border-color:var(--signal)}
+.btn.primary{background:var(--signal);color:var(--signal-ink);border-color:var(--signal)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn svg{width:16px;height:16px;flex:none}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.015em}
+.eyebrow{font:500 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.14em;color:var(--signal)}
+.muted{color:var(--muted)}
+.tc{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+section.view{padding-top:32px;display:grid;gap:36px}
+.hero{display:grid;gap:18px;padding-block:12px 4px}
+.hero blockquote{margin:0;font:600 clamp(1.6rem,5.2vw,3rem)/1.12 var(--f-display);letter-spacing:-.02em;text-wrap:balance;max-width:22ch}
+.hero .who{font:500 .85rem var(--f-mono);color:var(--muted)}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.sec-h h2{font-size:1.3rem}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+/* clip card */
+.clip{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.frame{position:relative;aspect-ratio:21/9;background:linear-gradient(135deg,var(--surface-2),#0b100d);display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);overflow:hidden}
+.face{object-fit:cover;object-position:50% 18%;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:block;flex:none}
+.frame .face{position:absolute;right:12px;top:10px;width:64px;height:64px;border-color:var(--signal)}
+details.credits{font-size:.78rem;color:var(--muted);max-width:70ch}
+details.credits summary{cursor:pointer;font:500 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.1em}
+details.credits ul{margin:10px 0 0;padding-left:18px;display:grid;gap:4px}
+details.credits a{color:var(--fg)}
+.frame .tag,.frame .from{position:relative;font:500 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.tag{background:var(--signal);color:var(--signal-ink);padding:3px 8px;border-radius:3px;font-weight:600}
+.tag.yt{background:var(--teal)}
+.from{color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.clip .body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.clip .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font:500 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.clip .meta a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.clip h3{font-size:1.02rem;line-height:1.28;letter-spacing:-.005em}
+.clip p{margin:0;color:var(--muted);font-size:.92rem}
+.clip .acts{display:flex;gap:8px;margin-top:auto;padding-top:8px}
+.clip .acts .btn.primary{flex:1;justify-content:center}
+.fav{padding:9px 11px}
+.fav[aria-pressed="true"]{border-color:var(--signal);color:var(--signal)}
+.fav[aria-pressed="true"] svg{fill:var(--signal)}
+.fav svg{fill:none;stroke:currentColor;stroke-width:2}
+/* ceo cards */
+.ceo{display:grid;gap:10px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;text-decoration:none;position:relative;overflow:hidden;min-width:0}
+.ceo:hover{border-color:var(--signal)}
+.ceo .face{width:76px;height:76px}
+.ceo h3{font-size:1.15rem}
+.ceo .co{font:500 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.ceo p{margin:0;color:var(--muted);font-size:.9rem}
+.ceo .count{font:500 .72rem var(--f-mono);color:var(--signal)}
+/* ceo detail */
+.profile{display:grid;gap:22px}
+.profile .head{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.profile .head .face{width:120px;height:120px;border:2px solid var(--signal)}
+.profile h1{font-size:clamp(1.9rem,6vw,3rem)}
+.origin{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.origin div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.origin div.low{border-color:#3a2f22}
+.origin .eyebrow{display:block;margin-bottom:6px}
+.origin .low .eyebrow{color:var(--warn)}
+.origin p{margin:0;font-size:.95rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font:500 .84rem var(--f-body);white-space:nowrap}
+.chip:hover{border-color:var(--signal)}
+.chip[aria-pressed="true"]{background:var(--signal);color:var(--signal-ink);border-color:var(--signal);font-weight:600}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:28px;color:var(--muted);text-align:center}
+.note{font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;max-width:70ch}
+.back{font:500 .8rem var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--signal)}
+.pick{border:1px solid var(--signal);border-radius:12px;padding:14px;display:grid;gap:12px;background:rgba(61,255,162,.04)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.follow[aria-pressed="true"]{border-color:var(--signal);color:var(--signal)}
+.profile .head .follow{margin-left:auto}
+.frame .face{z-index:1}
+
+
+.signup{display:grid;gap:10px;border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--surface);max-width:560px}
+.signup h2{font-size:1.1rem}
+.signup p{margin:0;color:var(--muted);font-size:.92rem}
+.signup form{display:flex;gap:8px;flex-wrap:wrap}
+.signup input[type=email]{flex:1 1 200px;min-width:0;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font:inherit}
+.sponsor{font:500 .78rem var(--f-mono);color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:10px 12px;max-width:560px}
+.sponsor a{color:var(--fg)}
+.books .clip .body{gap:6px}
+.disclose{font-size:.78rem;color:var(--muted);margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="wrap bar">
+    <a class="brand" href="#today"><i></i>Founder Reel</a>
+    <nav id="nav" aria-label="Sections">
+      <a href="#today" data-v="today">Today</a>
+      <a href="#people" data-v="people">People</a>
+      <a href="#moods" data-v="moods">Moods</a>
+      <a href="#saved" data-v="saved">Saved <span id="savedN" class="tc"></span></a>
+    </nav>
+    <button class="btn primary" id="surprise" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Surprise me</button>
+  </div></header>
+  <main id="app" tabindex="-1"></main>
+</div>
+<script>
+/* Founder Reel: loads data/*.json, renders four views, stores follows and saves on the device. */
+const FRESH_DAYS=14;
+let CEOS=[],C=[],QUOTES=[],MOODS=[],SITE={};
+const isHttps=u=>typeof u==='string'&&/^https:\/\//.test(u);
+const OKHOST=/^https:\/\/(www\.)?(x\.com|twitter\.com|youtube\.com|youtu\.be)\//;
+const ceoBy=id=>CEOS.find(c=>c.id===id);
+
+/* ---------- helpers ---------- */
+function h(tag,attrs,...kids){const e=document.createElement(tag);for(const k in(attrs||{})){const v=attrs[k];if(v==null||v===false)continue;if(k==='class')e.className=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else e.setAttribute(k,v===true?'':v)}kids.flat().forEach(c=>{if(c==null||c===false)return;e.append(c.nodeType?c:document.createTextNode(c))});return e}
+const svg=(d,extra='')=>{const w=document.createElement('span');w.innerHTML='<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" '+extra+'>'+d+'</svg>';return w.firstChild};
+const PLAY='<path d="M7 4l13 8-13 8z" fill="currentColor" stroke="none"/>';
+const HEART='<path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 22l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/>';
+const store={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let favs=store.get('founder-reel-favs',[]),follows=store.get('founder-reel-follow',[]);
+function refreshBadge(){document.getElementById('savedN').textContent=favs.length?'('+favs.length+')':''}
+function toggleFav(k){favs=favs.includes(k)?favs.filter(x=>x!==k):[...favs,k];store.set('founder-reel-favs',favs);refreshBadge()}
+function toggleFollow(id){follows=follows.includes(id)?follows.filter(x=>x!==id):[...follows,id];store.set('founder-reel-follow',follows)}
+const dayN=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/864e5);
+const pickRandom=a=>a[Math.floor(Math.random()*a.length)];
+const isFresh=c=>c.added&&(Date.now()-Date.parse(c.added))/864e5<=FRESH_DAYS;
+const byNewest=(a,b)=>(b.added||'').localeCompare(a.added||'');
+const face=p=>h('img',{class:'face',src:p.photo,alt:'Portrait of '+p.name,width:'120',height:'120'});
+
+function clipCard(c){
+  const p=ceoBy(c.ceo);
+  const fav=h('button',{class:'btn fav',type:'button','aria-pressed':String(favs.includes(c.id)),'aria-label':'Save clip',title:'Save on this device',onclick:()=>{toggleFav(c.id);fav.setAttribute('aria-pressed',String(favs.includes(c.id)));if(currentView==='saved')route()}},svg(HEART,'width="16" height="16"'));
+  return h('article',{class:'clip'},
+    h('div',{class:'frame'},face(p),h('span',{class:'tag'+(c.src==='YouTube'?' yt':'')},(isFresh(c)?'New · ':'')+(c.src==='X'?'Clip on X':'YouTube')),h('span',{class:'from tc'},c.who?'@'+c.who:'third-party')),
+    h('div',{class:'body'},
+      h('div',{class:'meta'},h('a',{href:'#ceo-'+p.id},p.name)),
+      h('h3',null,c.title),h('p',null,c.take),
+      h('div',{class:'acts'},h('a',{class:'btn primary',href:c.url,target:'_blank',rel:'noopener'},svg(PLAY,'width="16" height="16"'),'Watch on '+c.src),fav)));
+}
+
+/* ---------- views ---------- */
+let currentView='today',pickedClip=null,mood='grit';
+const app=document.getElementById('app');
+function section(title,right,items){return h('div',null,h('div',{class:'sec-h'},h('h2',null,title),right),h('div',{class:'grid'},items))}
+function extras(){
+  const out=[],n=SITE.newsletter||{},sp=SITE.sponsor||{};
+  if(isHttps(n.action)){
+    const f=h('form',{action:n.action,method:'post',target:'_blank',rel:'noopener'},h('input',{type:'email',name:n.emailField||'email',id:'signup-email',required:true,placeholder:'you@example.com','aria-label':'Email address',autocomplete:'email'}),h('button',{class:'btn primary',type:'submit'},'Subscribe'));
+    out.push(h('div',{class:'signup'},h('h2',null,n.title||'Get new clips'),h('p',null,n.blurb||''),f));
+  }
+  if(isHttps(sp.url)&&sp.text)out.push(h('div',{class:'sponsor'},'Sponsored \u00b7 ',h('a',{href:sp.url,target:'_blank',rel:'sponsored noopener'},sp.text)));
+  return out;
+}
+function books(){
+  const list=(SITE.affiliates||[]).filter(a=>a&&a.title&&isHttps(a.url));
+  if(!list.length)return null;
+  return h('div',{class:'books'},h('div',{class:'sec-h'},h('h2',null,'Books and tools they recommend')),h('p',{class:'disclose'},'Some links are affiliate links. We may earn a commission if you buy, at no extra cost to you.'),h('div',{class:'grid'},list.map(a=>h('article',{class:'clip'},h('div',{class:'body'},h('h3',null,a.title),a.by?h('div',{class:'meta'},a.by):null,a.note?h('p',null,a.note):null,h('div',{class:'acts'},h('a',{class:'btn primary',href:a.url,target:'_blank',rel:'sponsored noopener'},'View')))))));
+}
+function viewToday(){
+  const q=QUOTES[dayN%QUOTES.length],daily=C[(dayN*7)%C.length];
+  const rest=C.filter(c=>c!==daily),start=(dayN*5)%rest.length,more=[...rest.slice(start),...rest.slice(0,start)].slice(0,6);
+  const wrap=h('section',{class:'view'});
+  wrap.append(h('div',{class:'hero'},h('span',{class:'eyebrow'},'Quote of the day'),h('blockquote',null,'“'+q.text+'”'),h('div',{class:'who'},'— '+q.who),
+    h('div',{class:'row'},h('button',{class:'btn primary',type:'button',onclick:doSurprise},'Surprise me'),h('a',{class:'btn',href:'#ceo-'+q.ceo},'More from '+ceoBy(q.ceo).name))));
+  wrap.append(...extras());
+  if(pickedClip)wrap.append(h('div',{class:'pick',id:'pick'},h('span',{class:'eyebrow'},'Your random pick'),clipCard(pickedClip),h('button',{class:'btn',type:'button',onclick:doSurprise},'Another one')));
+  const mine=C.filter(c=>follows.includes(c.ceo)).sort(byNewest).slice(0,6);
+  if(mine.length)wrap.append(section('From people you follow',h('span',{class:'muted'},follows.length+' followed'),mine.map(clipCard)));
+  const fresh=C.filter(isFresh).sort(byNewest).slice(0,6);
+  if(fresh.length)wrap.append(section('Just added',h('span',{class:'muted'},'Added in the last two weeks. Descriptions come from captions.'),fresh.map(clipCard)));
+  wrap.append(section('Today’s boost',h('span',{class:'muted tc'},'about 2 minutes'),[clipCard(daily)]));
+  wrap.append(section('More short clips',h('a',{class:'back',href:'#moods'},'Browse by mood'),more.map(clipCard)));
+  const bk=books();if(bk)wrap.append(bk);
+  wrap.append(section('Go deeper on someone',null,CEOS.map(ceoCard)));
+  wrap.append(note());
+  return wrap;
+}
+function ceoCard(p){const n=C.filter(c=>c.ceo===p.id);return h('a',{class:'ceo',href:'#ceo-'+p.id},face(p),h('div',null,h('h3',null,p.name),h('div',{class:'co'},p.company)),h('p',null,p.start.split('. ')[0].replace(/\.$/,'')+'.'),h('span',{class:'count tc'},n.length+' short clips'+(follows.includes(p.id)?' · following':'')))}
+function viewPeople(){return h('section',{class:'view'},section('Pick a founder',null,CEOS.map(ceoCard)),note())}
+function viewCeo(id){
+  const p=ceoBy(id);if(!p)return viewPeople();
+  const list=C.filter(c=>c.ceo===id).sort((a,b)=>byNewest(a,b));
+  const fol=h('button',{class:'btn follow',type:'button','aria-pressed':String(follows.includes(id)),onclick:()=>{toggleFollow(id);fol.setAttribute('aria-pressed',String(follows.includes(id)));fol.textContent=follows.includes(id)?'Following':'Follow'}},follows.includes(id)?'Following':'Follow');
+  return h('section',{class:'view'},h('a',{class:'back',href:'#people'},'← All founders'),
+    h('div',{class:'profile'},h('div',{class:'head'},face(p),h('div',null,h('h1',null,p.name),h('div',{class:'muted tc'},p.company)),fol),
+    h('div',{class:'origin'},h('div',null,h('span',{class:'eyebrow'},'Where they started'),h('p',null,p.start)),h('div',{class:'low'},h('span',{class:'eyebrow'},'Lowest point'),h('p',null,p.low)))),
+    section('Short clips',h('span',{class:'muted tc'},list.length+' picks'),list.map(clipCard)),note(id==='zhang'));
+}
+function viewMoods(){
+  const out=h('section',{class:'view'});const listEl=h('div',{class:'grid'});const chips=h('div',{class:'chips',role:'group','aria-label':'Mood'});const blurb=h('p',{class:'muted',style:'margin:0'});
+  const paint=()=>{const m=MOODS.find(x=>x.id===mood);blurb.textContent=m.blurb;listEl.replaceChildren(...C.filter(c=>c.moods.includes(mood)).map(clipCard));chips.replaceChildren(...MOODS.map(m=>h('button',{class:'chip',type:'button','aria-pressed':String(mood===m.id),onclick:()=>{mood=m.id;paint()}},m.label)))};
+  out.append(h('div',null,h('div',{class:'sec-h'},h('h2',null,'How are you feeling?')),chips,h('div',{style:'height:10px'}),blurb),listEl,note());paint();return out;
+}
+function viewSaved(){
+  const list=favs.map(k=>C.find(c=>c.id===k)).filter(Boolean);
+  return h('section',{class:'view'},h('div',{class:'sec-h'},h('h2',null,'Saved clips'),h('span',{class:'muted'},'Stored on this device only')),
+    list.length?h('div',{class:'grid'},list.map(clipCard)):h('div',{class:'empty'},'Nothing saved yet. Tap the heart on any clip and it will show up here.'),note());
+}
+function credits(){return h('details',{class:'credits'},h('summary',null,'Photo credits'),h('ul',null,CEOS.map(p=>h('li',null,p.name+': ',h('a',{href:p.photoSource,target:'_blank',rel:'noopener'},'Wikimedia Commons'),' · '+(p.photoCredit===p.photoLicense?p.photoLicense:p.photoCredit+', '+p.photoLicense))),h('li',null,'Photos are cropped and resized.')))}
+function note(z){return h('div',{style:'display:grid;gap:14px'},credits(),h('p',{class:'note',style:'margin:0'},'Independent fan site. Not affiliated with any person or company shown. Clips open on X or YouTube, where the video plays. They are short excerpts, usually one to three minutes, posted by accounts like Startup Archive. Descriptions come from each post’s caption, so check the clip before you quote it. Some posts may be deleted or need an account to view.'+(z?' No short X clips of Zhang Yiming turned up. He rarely gives interviews, so these are third-party profiles on YouTube.':'')))}
+function doSurprise(){pickedClip=pickRandom(C);if(location.hash==='#today'||location.hash===''){route();}else location.hash='#today';requestAnimationFrame(()=>{const e=document.getElementById('pick');e&&e.scrollIntoView({behavior:'smooth',block:'center'})})}
+document.getElementById('surprise').addEventListener('click',doSurprise);
+
+/* ---------- router ---------- */
+function route(){
+  const hs=(location.hash||'#today').slice(1);let v=hs,view;
+  if(hs.startsWith('ceo-')){v='people';view=viewCeo(hs.slice(4))}
+  else if(hs==='people')view=viewPeople();else if(hs==='moods')view=viewMoods();else if(hs==='saved')view=viewSaved();else{v='today';view=viewToday()}
+  currentView=hs==='saved'?'saved':v;
+  document.querySelectorAll('#nav a').forEach(a=>a.getAttribute('data-v')===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  app.replaceChildren(view);
+}
+window.addEventListener('hashchange',()=>{route();window.scrollTo(0,0)});
+
+/* ---------- load data ---------- */
+async function getJson(name){const r=await fetch('data/'+name+'.json',{cache:'no-cache'});if(!r.ok)throw new Error(name+' '+r.status);return r.json()}
+async function start(){
+  refreshBadge();
+  app.replaceChildren(h('p',{class:'muted',style:'padding-top:32px'},'Loading clips…'));
+  try{
+    [CEOS,QUOTES,MOODS,SITE]=await Promise.all([getJson('ceos'),getJson('quotes'),getJson('moods'),getJson('site').catch(()=>({}))]);
+    if(/^[a-z0-9-]{1,40}$/.test(SITE.goatcounter||'')&&!document.getElementById('gc')){const g=document.createElement('script');g.id='gc';g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://'+SITE.goatcounter+'.goatcounter.com/count');document.head.append(g)}
+    const raw=await getJson('clips');const seen=new Set();
+    C=raw.filter(c=>!c.hidden&&c.id&&ceoBy(c.ceo)&&typeof c.url==='string'&&OKHOST.test(c.url)&&!seen.has(c.url)&&seen.add(c.url)).map(c=>({...c,moods:(c.moods||[]).filter(m=>MOODS.some(x=>x.id===m)),who:(c.url.match(/(?:x|twitter)\.com\/([^/]+)\//)||[])[1]}));
+    route();
+  }catch(e){
+    app.replaceChildren(h('div',{class:'empty',style:'margin-top:32px'},'Could not load the clips. Check your connection and ',h('a',{href:'',onclick:ev=>{ev.preventDefault();start()}},'try again'),'.'));
+  }
+}
+start();
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+</script>
+</body>
+</html>

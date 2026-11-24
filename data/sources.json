@@ -1,0 +1,34 @@
+{
+  "_help": "Settings for scripts/youtube-refresh.mjs. 'channels' are YouTube handles: any recent upload that names one of your people is added automatically. 'trustedChannels' are channel names: matches found by keyword search from these are added automatically. Everything else goes to data/candidates.json. Handles and names are unchecked, so confirm them on YouTube.",
+  "trustedChannels": [
+    "CNBC Television",
+    "Bloomberg Television",
+    "Bloomberg Originals",
+    "Y Combinator",
+    "Stanford Graduate School of Business",
+    "Lex Fridman",
+    "Dwarkesh Patel",
+    "Stripe",
+    "Fortune",
+    "Nobel Prize",
+    "a16z"
+  ],
+  "maxMinutes": 12,
+  "maxAutoAddPerRun": 15,
+  "daysBack": 14,
+  "channels": [
+    "@lexfridman",
+    "@DwarkeshPatel",
+    "@allin",
+    "@AcquiredFM",
+    "@20VC",
+    "@ycombinator",
+    "@a16z",
+    "@stripe",
+    "@stanfordgsb",
+    "@CNBCtelevision",
+    "@markets",
+    "@CleoAbram",
+    "@NobelPrize"
+  ]
+}
