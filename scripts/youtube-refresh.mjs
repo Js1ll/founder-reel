@@ -12,7 +12,9 @@ const trusted = new Set((src.trustedChannels || []).map(s => s.toLowerCase()));
 const known = new Set(clips.map(c => c.url));
 const since = new Date(Date.now() - (src.daysBack || 14) * 864e5).toISOString();
 const today = new Date().toISOString().slice(0, 10);
-const maxAdd = src.maxAutoAddPerRun || 15, maxMin = src.maxMinutes || 12;
+const maxAdd = src.maxAutoAddPerRun || 6, maxPer = src.maxAutoAddPerPerson || 2, maxMin = src.maxMinutes || 15;
+const block = (src.blockWords || []).map(w => w.toLowerCase());
+const perPerson = {};
 const decode = s => (s || '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const minutes = iso => { const m = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(iso || ''); return m ? (+m[1] || 0) * 60 + (+m[2] || 0) + (+m[3] || 0) / 60 : 999; };
 const api = async (path, params) => {
@@ -32,14 +34,18 @@ const details = async ids => ids.length ? (await api('videos', { part: 'snippet,
 const toClip = (v, ceo) => {
   const channel = decode(v.snippet.channelTitle), title = decode(v.snippet.title).trim();
   const desc = decode(v.snippet.description).replace(/\s+/g, ' ').trim();
-  const take = (desc.split(/(?<=[.!?])\s/)[0] || '').slice(0, 200) || `From ${channel}.`;
+  let take = (desc.split(/(?<=[.!?])\s/)[0] || '').slice(0, 200);
+  if (take.length < 25 || /https?:|www\.|follow |subscribe|@/i.test(take)) take = `From ${channel}.`;
   return { id: 'y' + v.id, ceo: ceo.id, url: `https://www.youtube.com/watch?v=${v.id}`, title: title.slice(0, 120), take, src: 'YouTube', moods: [], added: today };
 };
 const accept = (v, ceo, auto) => {
   if (known.has(`https://www.youtube.com/watch?v=${v.id}`)) return;
   if (minutes(v.contentDetails.duration) > maxMin) return;
   known.add(`https://www.youtube.com/watch?v=${v.id}`);
-  if (auto && added.length < maxAdd) added.push(toClip(v, ceo));
+  const title = decode(v.snippet.title).toLowerCase();
+  const okAuto = auto && added.length < maxAdd && (perPerson[ceo.id] || 0) < maxPer
+    && title.includes(ceo.name.toLowerCase()) && !block.some(w => title.includes(w));
+  if (okAuto) { added.push(toClip(v, ceo)); perPerson[ceo.id] = (perPerson[ceo.id] || 0) + 1; }
   else candidates.push({ ceo: ceo.id, url: `https://www.youtube.com/watch?v=${v.id}`, title: decode(v.snippet.title), channel: decode(v.snippet.channelTitle), published: v.snippet.publishedAt, minutes: Math.round(minutes(v.contentDetails.duration)) });
 };
 
