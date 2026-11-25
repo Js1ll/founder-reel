@@ -230,7 +230,7 @@ function viewToday(){
   wrap.append(note());
   return wrap;
 }
-function ceoCard(p){const n=C.filter(c=>c.ceo===p.id);return h('a',{class:'ceo',href:'#ceo-'+p.id},face(p),h('div',null,h('h3',null,p.name),h('div',{class:'co'},p.company)),h('p',null,p.start.split('. ')[0].replace(/\.$/,'')+'.'),h('span',{class:'count tc'},n.length+' short clips'+(follows.includes(p.id)?' · following':'')))}
+function ceoCard(p){const n=C.filter(c=>c.ceo===p.id);return h('a',{class:'ceo',href:'#ceo-'+p.id},face(p),h('div',null,h('h3',null,p.name),h('div',{class:'co'},p.company)),h('p',null,p.start.split('. ')[0].replace(/\.$/,'')+'.'),h('span',{class:'count tc'},(n.length?n.length+' short clips':'no clips yet')+(follows.includes(p.id)?' · following':'')))}
 function viewPeople(){return h('section',{class:'view'},section('Pick a founder',null,CEOS.map(ceoCard)),note())}
 function viewCeo(id){
   const p=ceoBy(id);if(!p)return viewPeople();
@@ -239,7 +239,7 @@ function viewCeo(id){
   return h('section',{class:'view'},h('a',{class:'back',href:'#people'},'← All founders'),
     h('div',{class:'profile'},h('div',{class:'head'},face(p),h('div',null,h('h1',null,p.name),h('div',{class:'muted tc'},p.company)),fol),
     h('div',{class:'origin'},h('div',null,h('span',{class:'eyebrow'},'Where they started'),h('p',null,p.start)),h('div',{class:'low'},h('span',{class:'eyebrow'},'Lowest point'),h('p',null,p.low)))),
-    section('Short clips',h('span',{class:'muted tc'},list.length+' picks'),list.map(clipCard)),note(id==='zhang'));
+    (list.length?section('Short clips',h('span',{class:'muted tc'},list.length+' picks'),list.map(clipCard)):h('div',null,h('div',{class:'sec-h'},h('h2',null,'Short clips')),h('div',{class:'empty'},'No clips of '+p.name+' yet. We only list short clips where the person is actually speaking, and none have turned up so it\u2019s empty for now.'))),note(id==='zhang'));
 }
 function viewMoods(){
   const out=h('section',{class:'view'});const listEl=h('div',{class:'grid'});const chips=h('div',{class:'chips',role:'group','aria-label':'Mood'});const blurb=h('p',{class:'muted',style:'margin:0'});
@@ -252,7 +252,7 @@ function viewSaved(){
     list.length?h('div',{class:'grid'},list.map(clipCard)):h('div',{class:'empty'},'Nothing saved yet. Tap the heart on any clip and it will show up here.'),note());
 }
 function credits(){return h('details',{class:'credits'},h('summary',null,'Photo credits'),h('ul',null,CEOS.map(p=>h('li',null,p.name+': ',h('a',{href:p.photoSource,target:'_blank',rel:'noopener'},'Wikimedia Commons'),' · '+(p.photoCredit===p.photoLicense?p.photoLicense:p.photoCredit+', '+p.photoLicense))),h('li',null,'Photos are cropped and resized.')))}
-function note(z){return h('div',{style:'display:grid;gap:14px'},credits(),h('p',{class:'note',style:'margin:0'},'Independent fan site. Not affiliated with any person or company shown. Clips open on X or YouTube, where the video plays. They are short excerpts, usually one to three minutes, posted by accounts like Startup Archive. Descriptions come from each post’s caption, so check the clip before you quote it. Some posts may be deleted or need an account to view.'+(z?' No short X clips of Zhang Yiming turned up. He rarely gives interviews, so these are third-party profiles on YouTube.':'')))}
+function note(z){return h('div',{style:'display:grid;gap:14px'},credits(),h('p',{class:'note',style:'margin:0'},'Independent fan site. Not affiliated with any person or company shown. Clips open on X or YouTube, where the video plays. They are short excerpts, usually one to three minutes, posted by accounts like Startup Archive. Descriptions come from each post’s caption, so check the clip before you quote it. Some posts may be deleted or need an account to view.'+(z?' Zhang Yiming rarely gives interviews, so there are no clips of him speaking yet.':'')))}
 function doSurprise(){pickedClip=pickRandom(C);if(location.hash==='#today'||location.hash===''){route();}else location.hash='#today';requestAnimationFrame(()=>{const e=document.getElementById('pick');e&&e.scrollIntoView({behavior:'smooth',block:'center'})})}
 document.getElementById('surprise').addEventListener('click',doSurprise);
 
