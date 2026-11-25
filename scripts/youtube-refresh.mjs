@@ -10,9 +10,10 @@ const read = n => JSON.parse(fs.readFileSync(file(n), 'utf8'));
 const ceos = read('ceos'), clips = read('clips'), src = read('sources');
 const trusted = new Set((src.trustedChannels || []).map(s => s.toLowerCase()));
 const known = new Set(clips.map(c => c.url));
-const since = new Date(Date.now() - (src.daysBack || 14) * 864e5).toISOString();
+const daysBack = Number(process.env.DAYS_BACK) || src.daysBack || 14;   // set DAYS_BACK=180 for a one-off backfill
+const since = new Date(Date.now() - daysBack * 864e5).toISOString();
 const today = new Date().toISOString().slice(0, 10);
-const maxAdd = src.maxAutoAddPerRun || 6, maxPer = src.maxAutoAddPerPerson || 2, maxMin = src.maxMinutes || 15;
+const maxAdd = Number(process.env.MAX_ADD) || src.maxAutoAddPerRun || 6, maxPer = Number(process.env.PER_PERSON) || src.maxAutoAddPerPerson || 2, maxMin = src.maxMinutes || 15;
 const block = (src.blockWords || []).map(w => w.toLowerCase());
 const perPerson = {};
 const decode = s => (s || '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');

@@ -69,6 +69,7 @@ The site updates itself from your GitHub repository. The Claude version is no lo
 - **Set it up once:** get a free YouTube Data API key from Google Cloud, then add it to your repository under Settings, Secrets and variables, Actions, as `YOUTUBE_API_KEY`. Run the workflow once by hand from the Actions tab (Run workflow) to check it.
 - **Channels and trusted names:** edit `data/sources.json`. I have not checked the @handles or channel names. The run's log prints `channel @x: not found, check the handle` for any that are wrong, so read the log after the first run and fix those.
 - **Automatic clips are not hand-checked.** They only pass mechanical checks: the person is named in the title or description, the video is 12 minutes or shorter, it was posted in the last 14 days, and the channel is on your list. Their descriptions come from the video description. They have no mood tags, so they show on Today and on the person's page but not in the mood lists. Hide a bad one by adding `"hidden": true` to its entry in `clips.json`.
+- **Bigger one-off search:** in the Actions tab, choose **Refresh clips**, then **Run workflow**, and change the boxes: days back `180`, most clips `20`, per person `3`. That pulls older videos from your channels and trusted searches. Keep the normal 14, 6 and 2 for the twice-weekly runs.
 - **X:** there is no free automatic way to search X, and its API is paid. The site has no X source for now, so new clips come from YouTube only. If you later decide to pay for X's API, a source can be added to the same script.
 
 ## Release 2: the app

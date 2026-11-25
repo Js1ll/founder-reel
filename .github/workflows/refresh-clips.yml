@@ -3,6 +3,16 @@ on:
   schedule:
     - cron: '17 19 * * 1,4'
   workflow_dispatch:
+    inputs:
+      days_back:
+        description: 'How many days back to search (use 180 or more for a one-off backfill)'
+        default: '14'
+      max_add:
+        description: 'Most clips to add automatically in this run'
+        default: '6'
+      per_person:
+        description: 'Most clips per person in this run'
+        default: '2'
 permissions:
   contents: write
 jobs:
@@ -17,6 +27,9 @@ jobs:
         run: node scripts/youtube-refresh.mjs
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          DAYS_BACK: ${{ github.event.inputs.days_back }}
+          MAX_ADD: ${{ github.event.inputs.max_add }}
+          PER_PERSON: ${{ github.event.inputs.per_person }}
       - name: Check the data
         run: node scripts/validate.mjs
       - name: Publish changes
