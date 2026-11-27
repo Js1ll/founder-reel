@@ -1949,5 +1949,31 @@
   "src": "YouTube",
   "moods": [],
   "added": "2026-11-26"
+ },
+ {
+  "id": "x2123326499818553554",
+  "ceo": "jensen",
+  "url": "https://x.com/AiEvolutio58513/status/2123326499818553554",
+  "title": "Jensen Huang still wakes up fearing the company is about to fail",
+  "take": "Jensen Huang says he wakes up feeling the business could be out of business soon, the same dread as the early days of being 30 days from going under.",
+  "src": "X",
+  "moods": [
+   "grit",
+   "lead"
+  ],
+  "added": "2026-11-27"
+ },
+ {
+  "id": "x2121226359620211184",
+  "ceo": "jensen",
+  "url": "https://x.com/AiEvolutio58513/status/2121226359620211184",
+  "title": "Jensen Huang says physical AI is the next wave",
+  "take": "Jensen Huang says most AI today doesn't grasp physics, friction, inertia or cause and effect, and that physical AI is coming for the world's biggest industries.",
+  "src": "X",
+  "moods": [
+   "focus",
+   "big"
+  ],
+  "added": "2026-11-27"
  }
 ]
